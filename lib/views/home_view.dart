@@ -17,7 +17,7 @@ class HomeView extends StatelessWidget {
                 onTap: () {
                   Navigator.pushReplacementNamed(context, '/');
                 },
-                child: Image.asset('assets/logo.png', height: 40),
+                child: Image.asset('assets/logo.jpeg', height: 40),
               ),
               const SizedBox(width: 10),
               const Text(appTitle),
