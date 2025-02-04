@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'views/home_view.dart';
 
 const Color primaryColor = Color(0xFF2196F3);
 const String appTitle = 'Compteur App';
@@ -21,13 +22,13 @@ class MyApp extends StatelessWidget {
       ),
       initialRoute: '/',
       routes: {
-        '/': (context) => const HomePage(),
-        '/second': (context) => const SecondPage(),
+        '/': (context) => const HomeView(),
+        //'/second': (context) => const SecondPage(),
       },
     );
   }
 }
-
+/*
 /*
  * Page d'accueil et son état mutable
  */
@@ -148,3 +149,4 @@ class SecondPage extends StatelessWidget {
     );
   }
 }
+*/
