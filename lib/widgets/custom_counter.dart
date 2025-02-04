@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import '../viewmodels/counter_view_model.dart';
 
 class CustomCounter extends StatelessWidget{
 
 
   Widget build(BuildContext context) {
+    final counterViewModel = context.watch<CounterViewModel>();
   return Scaffold(
     appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
@@ -16,7 +19,7 @@ class CustomCounter extends StatelessWidget{
               child: Image.asset('assets/logo.png', height: 40),
             ),
             const SizedBox(width: 10),
-            const Text(appTitle),
+            const Text("appTitle"),
           ],
         )
     ),
@@ -34,20 +37,20 @@ class CustomCounter extends StatelessWidget{
               children: [
                 IconButton(
                   icon: const Icon(Icons.remove),
-                  onPressed: _decrementCounter,
+                  onPressed: counterViewModel.decrementer,
                 ),
                 Text(
-                  '$_counter',
+                  '${counterViewModel.getCompteur()}',
                   style: Theme.of(context).textTheme.headlineMedium,
                 ),
                 Icon(
                   Icons.favorite,
-                  color: _counter < 0 ? Colors.black : Colors.red,
+                  color: counterViewModel.getCompteur() < 0 ? Colors.black : Colors.red,
                   size: 50,
                 ),
                 IconButton(
                   icon: const Icon(Icons.add),
-                  onPressed: _incrementCounter,
+                  onPressed: counterViewModel.incrementer,
                 ),
               ],
             ),
