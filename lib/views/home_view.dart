@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../core/constants/constants.dart';
+import '../viewmodels/counter_view_model.dart';
 import '../widgets/custom_counter.dart';
 
 class HomeView extends StatelessWidget {
@@ -33,7 +35,8 @@ class HomeView extends StatelessWidget {
             ),
             Padding(
               padding: const EdgeInsets.all(50.0),
-              child: CustomCounter().build(context)
+              child:
+              ChangeNotifierProvider(create: (context) => CounterViewModel(), child: CustomCounter())
             ),
             ElevatedButton(
               onPressed: () {
