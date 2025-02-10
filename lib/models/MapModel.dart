@@ -52,6 +52,14 @@ class MapModel {
   }
 
   void initNumbers(){
-
+    for (int line = 0; line < nbLine ; line++){
+      for (int col = 0; col < nbCol ; col++){
+        if (!_cases[line][col].hasBomb){
+          _cases[line][col].setNbBomb(computeNumber(line, col));
+        }
+      }
+    }
   }
+
+
 }
