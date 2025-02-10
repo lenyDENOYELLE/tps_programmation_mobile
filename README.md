@@ -1,6 +1,6 @@
-# tp2
+# tp3 - Le Démineur
 
-A new Flutter project.
+Jeu du démineur.
 
 ## Getting Started
 

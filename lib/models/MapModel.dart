@@ -61,5 +61,31 @@ class MapModel {
     }
   }
 
+  void generateMap(){
+    initCases();
+    initBomb();
+    initNumbers();
+  }
+
+  void reveal(int l, int c){
+    _cases[l][c].hidden = false;
+  }
+
+  void revealAll(){
+    for (int line = 0; line < nbLine ; line++){
+      for (int col = 0; col < nbCol ; col++){
+        reveal(line, col);
+      }
+    }
+  }
+
+  void explode(int l, int c){
+    _cases[l][c].hasExploded = true;
+  }
+
+  void toggleFlag(int l, int c){
+    _cases[l][c].hasFlag = !_cases[l][c].hasFlag;
+  }
+
 
 }
