@@ -2,9 +2,9 @@ import 'dart:math';
 
 import './CaseModel.dart';
 class MapModel { //
-  int nbLine = 0;
-  int nbCol = 0;
-  int nbBomb = 0;
+  int nbLine = 10;
+  int nbCol = 18;
+  int nbBomb = 10;
   List<List<CaseModel>> _cases = List<List<CaseModel>>.empty();
 
   void initCases(){
@@ -88,6 +88,9 @@ class MapModel { //
   void toggleFlag(int l, int c){
     _cases[l][c].hasFlag = !_cases[l][c].hasFlag;
   }
+
+  bool getIsBomb(int l, int c) => _cases[l][c].hasBomb;
+  bool getHasFlag(int l, int c) => _cases[l][c].hasFlag;
 
 
 }

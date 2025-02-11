@@ -10,7 +10,14 @@ class GameViewModel{
   }
 
   void click(int l, int c){
-    mapgame.reveal(l, c);
+    if (!mapgame.getHasFlag(l, c)) {
+      mapgame.reveal(l, c);
+      if (mapgame.getIsBomb(l, c)){
+        mapgame.explode(l, c);
+        mapgame.revealAll();
+      }
+    }
+
   }
 
   void onLongPress(int l, int c){
@@ -18,6 +25,8 @@ class GameViewModel{
   }
 
   Image getIcon(choix){
+
+    // si explose sinon flag sinon bombe sinon nombre
     switch(choix){
       case 'flag':
         return Image.asset('assets/flag.png', height: 40,);
