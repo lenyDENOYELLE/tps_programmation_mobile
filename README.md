@@ -1,4 +1,4 @@
-# tp2
+# tpTemplate
 
 A new Flutter project.
 
