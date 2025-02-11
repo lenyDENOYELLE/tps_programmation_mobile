@@ -4,9 +4,9 @@ class CaseModel {
   bool hasBomb = false;
   bool hasExploded = false;
   bool hasFlag = false;
-  int? nbBomb;
+  int? number;
 
   void setNbBomb(int nb){
-    nbBomb = nb;
+    number = nb;
   }
 }

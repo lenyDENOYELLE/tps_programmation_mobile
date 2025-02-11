@@ -1,7 +1,7 @@
 import 'dart:math';
 
 import './CaseModel.dart';
-class MapModel {
+class MapModel { //
   int nbLine = 0;
   int nbCol = 0;
   int nbBomb = 0;
@@ -68,7 +68,9 @@ class MapModel {
   }
 
   void reveal(int l, int c){
-    _cases[l][c].hidden = false;
+    if (!_cases[l][c].hasFlag) {
+      _cases[l][c].hidden = false;
+    }
   }
 
   void revealAll(){
