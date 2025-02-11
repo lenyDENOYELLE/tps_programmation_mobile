@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-
 import '../models/MapModel.dart';
 
-class GameViewModel{
+class GameViewModel extends ChangeNotifier{
   MapModel mapgame = MapModel();
 
   void generateMap(){
     mapgame.generateMap();
+    notifyListeners();
   }
 
   void click(int l, int c){
@@ -17,11 +17,13 @@ class GameViewModel{
         mapgame.revealAll();
       }
     }
+    notifyListeners();
 
   }
 
   void onLongPress(int l, int c){
     mapgame.toggleFlag(l, c);
+    notifyListeners();
   }
 
   Image getIcon(choix){
@@ -46,5 +48,10 @@ class GameViewModel{
       default:
         return Image.asset('assets/0.jpg', height: 40);
     }
+
+
   }
+
+  int getLines() => mapgame.getLines();
+  int getCol() => mapgame.getCol();
 }

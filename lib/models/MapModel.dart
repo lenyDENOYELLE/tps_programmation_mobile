@@ -92,5 +92,8 @@ class MapModel { //
   bool getIsBomb(int l, int c) => _cases[l][c].hasBomb;
   bool getHasFlag(int l, int c) => _cases[l][c].hasFlag;
 
+  int getLines() => nbLine;
+  int getCol() => nbCol;
+
 
 }
