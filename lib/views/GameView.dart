@@ -9,18 +9,23 @@ class GameView extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) {
-    //final gameViewModel = context.watch<GameViewModel>();
-    List<List<int>> ail = [[0,1,2], [3,4,5], [6,7,8]];
     final ail2 = GameViewModel();
+    ail2.generateMap();
     //final ail2 = context.watch()<GameViewModel>();
     return Scaffold(
       body: Center(
-        child: Column(
-            children: List.generate(ail2.getCol(), (index) => Row(
-              children: List.generate(ail2.getLines(), (index) => MapButton()),
+        child: Row(
+            children: List.generate(ail2.getLines(), (line) => Column(
+              children: List.generate(ail2.getCol(), (col) =>
+                  ChangeNotifierProvider.value(value: ail2,
+                      child: MapButton(line: line, col: col)
+                  )
+              ),
             )),
+
         ),
       ),
     );
   }
 }
+

@@ -2,8 +2,8 @@ import 'dart:math';
 
 import './CaseModel.dart';
 class MapModel { //
-  int nbLine = 10;
-  int nbCol = 18;
+  int nbLine = 9;
+  int nbCol = 9;
   int nbBomb = 10;
   List<List<CaseModel>> _cases = List<List<CaseModel>>.empty();
 
@@ -68,8 +68,22 @@ class MapModel { //
   }
 
   void reveal(int l, int c){
-    if (!_cases[l][c].hasFlag) {
-      _cases[l][c].hidden = false;
+    CaseModel? casee = tryGetCase(l, c);
+    if (casee != null) {
+      if (!casee.hasFlag && casee.hidden) {
+        casee.hidden = false;
+        if (casee.number != null && casee.number == 0) {
+          reveal(l - 1, c - 1);
+          reveal(l - 1, c);
+          reveal(l - 1, c + 1);
+          reveal(l, c - 1);
+          reveal(l, c + 1);
+          reveal(l + 1, c - 1);
+          reveal(l + 1, c);
+          reveal(l + 1, c + 1);
+        }
+
+      }
     }
   }
 
@@ -89,7 +103,10 @@ class MapModel { //
     _cases[l][c].hasFlag = !_cases[l][c].hasFlag;
   }
 
-  bool getIsBomb(int l, int c) => _cases[l][c].hasBomb;
+  bool getIsBomb(int l, int c){
+    print('line : $l ; col : $c');
+    return tryGetCase(l, c) != null ? _cases[l][c].hasBomb : false;
+  }
   bool getHasFlag(int l, int c) => _cases[l][c].hasFlag;
 
   int getLines() => nbLine;

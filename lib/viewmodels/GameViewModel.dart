@@ -1,3 +1,4 @@
+import 'package:counter_app/models/CaseModel.dart';
 import 'package:flutter/material.dart';
 import '../models/MapModel.dart';
 
@@ -26,16 +27,28 @@ class GameViewModel extends ChangeNotifier{
     notifyListeners();
   }
 
-  Image getIcon(choix){
-
+  Image getIcon(int line, int col){
+    CaseModel? casen = mapgame.tryGetCase(line, col);
+    int? nombre;
+    double taille = 60;
+    if (casen != null) {
+      if (casen.hasFlag) {
+        return Image.asset('assets/flag.png', height: taille, width: taille,);
+      } else if (casen.hidden){
+        return Image.asset('assets/hidden.png', height: taille, width: taille,);
+      }
+      if (casen.hasExploded) {
+        return Image.asset('assets/bombe_explode.jpg', height: taille, width: taille,);
+      }
+      if (casen.hasBomb) {
+        return Image.asset('assets/bombe.jpg', height: taille, width: taille,);
+      }
+      nombre = casen.number != null ? casen.number : 0;
+    } else{
+      nombre = 0;
+    }
     // si explose sinon flag sinon bombe sinon nombre
-    switch(choix){
-      case 'flag':
-        return Image.asset('assets/flag.png', height: 40,);
-      case 'mine':
-        return Image.asset('assets/bombe.jpg', height: 40,);
-      case 'explode':
-        return Image.asset('assets/bombe_explode.jpg', height: 40,);
+    switch(nombre){
       case 1:
       case 2:
       case 3:
@@ -44,9 +57,9 @@ class GameViewModel extends ChangeNotifier{
       case 6:
       case 7:
       case 8:
-        return Image.asset('assets/$choix.jpg', height: 40);
+        return Image.asset('assets/$nombre.jpg', height: taille, width: taille,);
       default:
-        return Image.asset('assets/0.jpg', height: 40);
+        return Image.asset('assets/0.jpg', height: taille, width: taille,);
     }
 
 

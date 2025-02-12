@@ -47,5 +47,6 @@ flutter:
     - assets/0.jpg
     - assets/bombe_explode.jpg
     - assets/flag.png
+    - assets/hidden.png
 
 
