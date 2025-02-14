@@ -15,7 +15,7 @@ class GameViewModel extends ChangeNotifier{
       mapgame.reveal(l, c);
       if (mapgame.getIsBomb(l, c)){
         mapgame.explode(l, c);
-        mapgame.revealAll();
+        mapgame.revealAll(false);
       }
     }
     notifyListeners();
@@ -61,8 +61,42 @@ class GameViewModel extends ChangeNotifier{
       default:
         return Image.asset('assets/0.jpg', height: taille, width: taille,);
     }
+  }
 
-
+  Container getVisual(int line, int col){
+    CaseModel? casen = mapgame.tryGetCase(line, col);
+    int? nombre;
+    double taille = 60;
+    if (casen != null) {
+      if (casen.hasFlag) {
+        return Container(height: taille, width: taille, color: Colors.deepOrange,  child: Icon(Icons.flag));
+      } else if (casen.hidden){
+        return Container(height: taille, width: taille, color: Colors.grey, child: Icon(Icons.add_box));
+      }
+      if (casen.hasExploded) {
+        return Container(height: taille, width: taille, color: Colors.red, child: Icon(Icons.cloud_circle_rounded));
+      }
+      if (casen.hasBomb) {
+        return Container(height: taille, width: taille, color: Colors.amberAccent, child: Icon(Icons.warning_amber));
+      }
+      nombre = casen.number != null ? casen.number : 0;
+    } else{
+      nombre = 0;
+    }
+    // si explose sinon flag sinon bombe sinon nombre
+    switch(nombre){
+      case 1:
+      case 2:
+      case 3:
+      case 4:
+      case 5:
+      case 6:
+      case 7:
+      case 8:
+        return Container(height: taille, width: taille, color: Colors.green, child: Center(child: Text('${nombre}'),));
+      default:
+        return Container(height: taille, width: taille, color: Colors.greenAccent,);
+    }
   }
 
   int getLines() => mapgame.getLines();

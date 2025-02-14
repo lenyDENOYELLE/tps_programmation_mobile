@@ -87,9 +87,12 @@ class MapModel { //
     }
   }
 
-  void revealAll(){
+  void revealAll(bool aGagne){
     for (int line = 0; line < nbLine ; line++){
       for (int col = 0; col < nbCol ; col++){
+        if (!aGagne && _cases[line][col].hasFlag){
+          toggleFlag(line, col);
+        }
         reveal(line, col);
       }
     }

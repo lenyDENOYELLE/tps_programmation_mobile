@@ -16,7 +16,8 @@ class MapButton extends StatelessWidget{
     final gameViewModel = context.watch<GameViewModel>();
     return InkWell(onTap: () => gameViewModel.click(line, col),
         onLongPress: () => gameViewModel.onLongPress(line, col),
-        child: gameViewModel.getIcon(line, col));
+        child: gameViewModel.getVisual(line, col));
+    //child: gameViewModel.getIcon(line, col));
 
       Container(
       width: 32,
